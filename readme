@@ -1,0 +1,34 @@
+docker run example:
+
+docker run -it -v /my/folder:/var/apps -p 8080:80 thisimage
+
+Bind your sites folder in /var/apps
+the root of /var/apps should have a file named sites where you have your sitename and exe path to it
+first is the domain name you will add in your hosts and use and the second is the path to the file relative to your mount point
+
+
+sites file example:
+firstapp.app firstiste/bin/www
+secondapp.app secondone/some.js
+
+Folder structure example:
+rootfolder bound to /var/apps
+->sites
+->firstside
+->->bin 
+->->->www
+->secondone
+->->some.js
+
+Domains added in your hosts file:
+127.0.0.1 firstapp.app 
+127.0.0.1 secondapp.app 
+
+To access them open your appname in your browser with the host forwarded port 
+firstapp.app:8080
+
+
+
+The port in your application has to be obtained dynamically for example use
+var port = process.env.PORT; to define it
+
